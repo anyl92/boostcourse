@@ -11,7 +11,6 @@ import kr.or.yl.reservationservice.category.service.CategoryService;
 @RestController
 @RequestMapping(path = "/api/categories")
 public class CategoryController {
-	
 	private final CategoryService categoryService;
 
 	public CategoryController(CategoryService categoryService) {
@@ -20,6 +19,7 @@ public class CategoryController {
 
 	@GetMapping
 	public ResponseEntity<CategoryDto> getCategories() {
+		System.out.println("여기 못 와 ???????????????????????");
 		return ResponseEntity
 			.ok(new CategoryDto(categoryService.getCategories()));
 	}

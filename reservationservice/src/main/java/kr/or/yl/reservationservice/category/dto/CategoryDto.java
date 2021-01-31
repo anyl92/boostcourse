@@ -15,4 +15,12 @@ public class CategoryDto {
 		return items;
 	}
 
+	public void setItems(List<Category> items) {
+		this.items = items;
+	}
+
+	@Override
+	public String toString() {
+		return "CategoryDto [items=" + items + "]";
+	}
 }

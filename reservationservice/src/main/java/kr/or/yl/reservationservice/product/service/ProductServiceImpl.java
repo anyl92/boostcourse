@@ -2,7 +2,6 @@ package kr.or.yl.reservationservice.product.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.yl.reservationservice.product.dao.ProductDao;
@@ -19,7 +18,6 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	public List<Product> getProducts(ProductReadRequest productReadRequest) {
-		System.out.println(productDao+"다오다오다오다오");
 		return productDao.selectAll(productReadRequest);
 	}
 }

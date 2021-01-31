@@ -20,4 +20,10 @@ public class ProductReadResponse {
 	public int getTotalCount() {
 		return totalCount;
 	}
+
+	@Override
+	public String toString() {
+		return "ProductReadResponse [items=" + items + ", totalCount=" + totalCount + "]";
+	}
+
 }
