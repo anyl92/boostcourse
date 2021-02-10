@@ -3,6 +3,9 @@ package kr.or.yl.reservationservice.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.ComponentScan.Filter;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -11,13 +14,16 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {
-		"kr.or.yl.reservationservice.main.controller",
-//		"kr.or.yl.reservationservice.product.controller",
-//		"kr.or.yl.reservationservice.promotion.controller",
-//		"kr.or.yl.reservationservice.reservation.controller",
-		"kr.or.yl.reservationservice.config"
-})
+@ComponentScan(
+		basePackages = "kr.or.yl.reservationservice", 
+		useDefaultFilters = false,
+		includeFilters = {
+				@Filter(
+						type = FilterType.ANNOTATION,
+						classes = {Controller.class}
+						)
+				}
+		)
 public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter{
 	
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {

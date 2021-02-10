@@ -10,10 +10,11 @@ public class Product {
 	private String productImageUrl;
 
 	public Product() {
+		
 	}
 
-	public Product(int displayInfoId, String placeName, String productContent, String productDescription, int productId,
-		String productImageUrl) {
+	public Product(int displayInfoId, String placeName, String productContent, 
+			String productDescription, int productId, String productImageUrl) {
 		this.displayInfoId = displayInfoId;
 		this.placeName = placeName;
 		this.productContent = productContent;
@@ -38,11 +39,11 @@ public class Product {
 		this.placeName = placeName;
 	}
 
-	public String getProductContent() {
+	public String getproductContent() {
 		return productContent;
 	}
 
-	public void setProductContent(String productContent) {
+	public void setproductContent(String productContent) {
 		this.productContent = productContent;
 	}
 

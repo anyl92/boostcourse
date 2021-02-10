@@ -1,13 +1,9 @@
 package kr.or.yl.reservationservice.product.dto;
 
-import javax.validation.constraints.Min;
-
 public class ProductReadRequest {
-	@Min(value = 0, message = "카테고리 ID가 유효하지 않습니다.")
+	
 	private int categoryId;
-
-	@Min(value = 0, message = "상품정보의 시작 범위가 유효하지 않습니다.")
-	private int start = 0;
+	private int start;
 
 	public int getCategoryId() {
 		return categoryId;
@@ -17,11 +13,11 @@ public class ProductReadRequest {
 		this.categoryId = categoryId;
 	}
 
-	public int getStart() {
+	public int getstart() {
 		return start;
 	}
 
-	public void setStart(int start) {
+	public void setstart(int start) {
 		this.start = start;
 	}
 
@@ -30,6 +26,4 @@ public class ProductReadRequest {
 		return "ProductReadRequest [categoryId=" + categoryId + ", start=" + start + "]";
 	}
 	
-	
-
 }

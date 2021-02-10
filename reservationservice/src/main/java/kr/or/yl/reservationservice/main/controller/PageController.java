@@ -1,44 +1,27 @@
 package kr.or.yl.reservationservice.main.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class PageController {
 	
-	@GetMapping(value = "/main")
+	@GetMapping(value = "/")
 	public String main() {
-		return "main";
+		return "mainpage";
 	}
 
-	@GetMapping(value = "/bookinglogin")
-	public String bookinglogin() {
-		return "bookinglogin";
-	}
-
-	@GetMapping(value = "/detail")
-	public String detail() {
+	@GetMapping("detail/{id}")
+	public String detail(@PathVariable(name="id") int id, Model model) {
+		model.addAttribute("displayInfoId", id);
 		return "detail";
 	}
 
-	@GetMapping(value = "/myreservation")
-	public String myreservation() {
-		return "myreservation";
+	@GetMapping("review/{id}")
+	public String review(@PathVariable(name="id") int id, Model model) {
+		model.addAttribute("displayInfoId", id);
+		return "review";
 	}
-
-	@GetMapping(value = "/reserve")
-	public String reserve() {
-		return "reserve";
-	}
-
-	@GetMapping(value = "/review")
-	public String review() {
-		return "bookinglogin";
-	}
-
-	@GetMapping(value = "/reviewwrite")
-	public String reviewwrite() {
-		return "reviewwrite";
-	}
-
 }

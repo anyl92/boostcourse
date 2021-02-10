@@ -5,25 +5,25 @@ import kr.or.yl.reservationservice.product.domain.Product;
 
 public class ProductReadResponse {
 
-	private List<Product> items;
-	private int totalCount;
+	private final List<Product> items;
+	private final int count;
 
-	public ProductReadResponse(List<Product> items, int totalCount) {
+	public ProductReadResponse(List<Product> items, int count) {
 		this.items = items;
-		this.totalCount = totalCount;
+		this.count = count;
 	}
 
 	public List<Product> getItems() {
 		return items;
 	}
-
-	public int getTotalCount() {
-		return totalCount;
+	
+	public int getCount() {
+		return count;
 	}
 
 	@Override
 	public String toString() {
-		return "ProductReadResponse [items=" + items + ", totalCount=" + totalCount + "]";
+		return "ProductReadResponse [items=" + items + ", count=" + count + "]";
 	}
 
 }

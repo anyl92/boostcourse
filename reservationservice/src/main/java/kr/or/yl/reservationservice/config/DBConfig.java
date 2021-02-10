@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 @Configuration
 @EnableTransactionManagement
 @PropertySource({"classpath:/application.properties"})
-public class DBConfig implements TransactionManagementConfigurer {
+public class DbConfig implements TransactionManagementConfigurer {
 
 	@Value("${spring.datasource.driver-class-name}")
 	private String jdbcDriver;
@@ -34,7 +34,6 @@ public class DBConfig implements TransactionManagementConfigurer {
 
     @Bean
     public DataSource dataSource() {
-    	System.out.println(jdbcDriver);
     	BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName(jdbcDriver);
         dataSource.setUrl(serverUrl + options);

@@ -5,12 +5,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kr.or.yl.reservationservice.category.dto.CategoryDto;
+import kr.or.yl.reservationservice.category.dto.CategoryReadRequest;
 import kr.or.yl.reservationservice.category.service.CategoryService;
 
 @RestController
 @RequestMapping(path = "/api/categories")
 public class CategoryController {
+	
 	private final CategoryService categoryService;
 
 	public CategoryController(CategoryService categoryService) {
@@ -18,10 +19,9 @@ public class CategoryController {
 	}
 
 	@GetMapping
-	public ResponseEntity<CategoryDto> getCategories() {
-		System.out.println("여기 못 와 ???????????????????????");
+	public ResponseEntity<CategoryReadRequest> getCategories() {
 		return ResponseEntity
-			.ok(new CategoryDto(categoryService.getCategories()));
+				.ok(new CategoryReadRequest(categoryService.getCategories()));
 	}
 
 }

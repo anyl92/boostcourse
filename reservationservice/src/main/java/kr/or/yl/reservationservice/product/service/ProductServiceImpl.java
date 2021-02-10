@@ -2,22 +2,38 @@ package kr.or.yl.reservationservice.product.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.yl.reservationservice.product.dao.ProductDao;
 import kr.or.yl.reservationservice.product.domain.Product;
-import kr.or.yl.reservationservice.product.dto.ProductReadRequest;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-
-	private ProductDao productDao;
+	@Autowired
+	private final ProductDao productDao;
 
 	public ProductServiceImpl(ProductDao productDao) {
 		this.productDao = productDao;
 	}
 
-	public List<Product> getProducts(ProductReadRequest productReadRequest) {
-		return productDao.selectAll(productReadRequest);
+	@Override
+	public List<Product> getAllProduct(int start) {
+		return productDao.selectAllProduct(start);
+	}
+
+	@Override
+	public int getAllProductCount() {
+		return productDao.selectAllProductCount();
+	}
+	
+	@Override
+	public List<Product> getCategoryProducts(int categoryId, int start) {
+		return productDao.selectCategoryProducts(categoryId, start);
+	}
+	
+	@Override
+	public int getCategoryProductsCount(int categoryId) {
+		return productDao.selectCategoryProductsCount(categoryId);
 	}
 }
