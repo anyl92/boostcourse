@@ -21,9 +21,9 @@
 	const setDisplayInfos = (displayInfos) => {
 		setAverageScore(displayInfos.averageScore, displayInfos.comments.length);
 		setComments(displayInfos.comments);
-		setProductImages(displayInfos.productImages, displayInfos.display.productDescription);
-		setProductContent(displayInfos.display.productContent);
-		setDisplayInfo(displayInfos.display, displayInfos.displayImage.saveFileName);
+		setProductImages(displayInfos.productImages, displayInfos.displayInfo.productDescription);
+		setProductContent(displayInfos.displayInfo.productContent);
+		setDisplayInfo(displayInfos.displayInfo, displayInfos.displayInfoImage.saveFileName);
 	}
 
 	const setAverageScore = (averageScore, commentsLength) => {

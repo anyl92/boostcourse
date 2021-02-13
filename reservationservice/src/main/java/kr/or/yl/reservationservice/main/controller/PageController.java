@@ -24,4 +24,14 @@ public class PageController {
 		model.addAttribute("displayInfoId", id);
 		return "review";
 	}
+	
+	@GetMapping("reserve")
+	public String reserve() {
+		return "reserve";
+	}
+	
+	@GetMapping("bookinglogin")
+	public String bookinglogin() {
+		return "bookinglogin";
+	}
 }

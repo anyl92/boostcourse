@@ -11,15 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.or.yl.reservationservice.product.domain.Comment;
-import kr.or.yl.reservationservice.product.domain.DisplayInfo;
-import kr.or.yl.reservationservice.product.domain.DisplayInfoImage;
 import kr.or.yl.reservationservice.product.domain.Product;
-import kr.or.yl.reservationservice.product.domain.ProductImage;
 import kr.or.yl.reservationservice.product.dto.CommentReadResponse;
-import kr.or.yl.reservationservice.product.dto.DisplayInfoReadResponse;
+import kr.or.yl.reservationservice.product.dto.DetailReadResponse;
 import kr.or.yl.reservationservice.product.dto.ProductReadResponse;
 import kr.or.yl.reservationservice.product.service.CommentService;
-import kr.or.yl.reservationservice.product.service.DisplayInfoService;
+import kr.or.yl.reservationservice.product.service.DetailService;
 import kr.or.yl.reservationservice.product.service.ProductService;
 
 @RestController
@@ -29,12 +26,12 @@ public class ProductController {
 	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 	
 	private final ProductService productService;
-	private final DisplayInfoService displayInfoService;
+	private final DetailService detailService;
 	private final CommentService commentService;
 
-	public ProductController(ProductService productService, DisplayInfoService displayInfoService, CommentService commentService) {
+	public ProductController(ProductService productService, DetailService detailService, CommentService commentService) {
 		this.productService = productService;
-		this.displayInfoService = displayInfoService;
+		this.detailService = detailService;
 		this.commentService = commentService;
 	}
 	
@@ -57,19 +54,11 @@ public class ProductController {
 	}
 	
 	@GetMapping("/{displayInfoId}")
-	public ResponseEntity<DisplayInfoReadResponse> getDisplayInfo(@PathVariable(name="displayInfoId") int displayInfoId) {
-		
-		double averageScore = commentService.getAverageScore(displayInfoId);
-		List<Comment> comment = commentService.getComments(displayInfoId);
-		DisplayInfo displayInfo = displayInfoService.getDisplayInfo(displayInfoId);
-		DisplayInfoImage displayInfoImage = displayInfoService.getDisplayInfoImage(displayInfoId);
-		List<ProductImage> productImages = displayInfoService.getDisplayProductImages(displayInfoId);
-		
-		DisplayInfoReadResponse displayInfoReadResponse = 
-				new DisplayInfoReadResponse(averageScore, comment, displayInfo, displayInfoImage, productImages);
+	public ResponseEntity<DetailReadResponse> getDisplayInfo(@PathVariable(name="displayInfoId") int displayInfoId) {
+		DetailReadResponse detailReadResponse = detailService.getDetail(displayInfoId);
 		
 		return ResponseEntity
-				.ok(displayInfoReadResponse);
+				.ok(detailReadResponse);
 	}
 	
 	@GetMapping("/{displayInfoId}/reviews")
@@ -78,11 +67,8 @@ public class ProductController {
 		double averageScore = commentService.getAverageScore(displayInfoId);
 		List<Comment> comment = commentService.getComments(displayInfoId);
 		
-		CommentReadResponse commentReadResponse = 
-				new CommentReadResponse(averageScore, comment);
-		
 		return ResponseEntity
-				.ok(commentReadResponse);
+				.ok(new CommentReadResponse(averageScore, comment));
 	}
 	
 }
