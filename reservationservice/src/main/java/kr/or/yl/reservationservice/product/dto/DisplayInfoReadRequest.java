@@ -4,11 +4,11 @@ public class DisplayInfoReadRequest {
 
 	private int displayInfoId;
 
-	public int getdisplayInfoId() {
+	public int getDisplayInfoId() {
 		return displayInfoId;
 	}
 
-	public void setdisplayInfoId(int displayInfoId) {
+	public void setDisplayInfoId(int displayInfoId) {
 		this.displayInfoId = displayInfoId;
 	}
 

@@ -22,7 +22,7 @@ public class DisplayInfoDaoSqls {
 	+ "FROM   display_info "
 	+ "JOIN   product ON product.id = display_info.product_id "
 	+ "JOIN   category ON category.id = product.category_id "
-	+ "WHERE  display_info.id = :displayInfoId;";
+	+ "WHERE  display_info.id = :displayInfoId; ";
 	
 	public static final String SELECT_DISPLAY_INFO_IMAGE
 	= "SELECT file_info.content_type AS content_type, "
@@ -37,7 +37,7 @@ public class DisplayInfoDaoSqls {
 	+ "FROM   display_info_image "
 	+ "JOIN   display_info ON display_info_image.display_info_id = display_info.id "
 	+ "JOIN   file_info ON display_info_image.file_id = file_info.id "
-	+ "WHERE  display_info.id = :displayInfoId;";
+	+ "WHERE  display_info.id = :displayInfoId; ";
 	
 	public static final String SELECT_DISPLAY_PRODUCT_IMAGES
 	= "SELECT file_info.content_type, "
@@ -55,6 +55,19 @@ public class DisplayInfoDaoSqls {
 	+ "JOIN   file_info ON file_info.id = product_image.file_id "
 	+ "JOIN   display_info ON display_info.product_id = product_image.product_id "
 	+ "WHERE  display_info.id = :displayInfoId AND product_image.type in ('ma', 'et') "
-	+ "LIMIT  2;";
+	+ "LIMIT  2; ";
+	
+	public static final String SELECT_PRODUCT_PRICE
+	= "SELECT product_price.create_date, "
+	+ "		  product_price.discount_rate, "
+	+ "       product_price.modify_date, "
+	+ "       product_price.price, "
+	+ "       product_price.price_type_name, "
+	+ "       product.id AS product_id, "
+	+ "       product_price.id AS product_price_id "
+	+ "FROM   product_price "
+	+ "JOIN   product ON product.id = product_price.product_id "
+	+ "JOIN   display_info ON display_info.product_id = product.id "
+	+ "WHERE  display_info.id = :displayInfoId; ";
 	
 }

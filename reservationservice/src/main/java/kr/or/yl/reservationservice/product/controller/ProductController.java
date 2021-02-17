@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import kr.or.yl.reservationservice.product.domain.Comment;
 import kr.or.yl.reservationservice.product.domain.Product;
 import kr.or.yl.reservationservice.product.dto.CommentReadResponse;
-import kr.or.yl.reservationservice.product.dto.DetailReadResponse;
+import kr.or.yl.reservationservice.product.dto.DisplayInfoReadResponse;
 import kr.or.yl.reservationservice.product.dto.ProductReadResponse;
+import kr.or.yl.reservationservice.product.dto.ReserveReadResponse;
 import kr.or.yl.reservationservice.product.service.CommentService;
 import kr.or.yl.reservationservice.product.service.DetailService;
 import kr.or.yl.reservationservice.product.service.ProductService;
@@ -54,21 +55,28 @@ public class ProductController {
 	}
 	
 	@GetMapping("/{displayInfoId}")
-	public ResponseEntity<DetailReadResponse> getDisplayInfo(@PathVariable(name="displayInfoId") int displayInfoId) {
-		DetailReadResponse detailReadResponse = detailService.getDetail(displayInfoId);
+	public ResponseEntity<DisplayInfoReadResponse> getDisplayInfo(@PathVariable(name="displayInfoId") int displayInfoId) {
+		DisplayInfoReadResponse displayInfoReadResponse = detailService.getDetail(displayInfoId);
 		
 		return ResponseEntity
-				.ok(detailReadResponse);
+				.ok(displayInfoReadResponse);
 	}
 	
 	@GetMapping("/{displayInfoId}/reviews")
 	public ResponseEntity<CommentReadResponse> getDisplayComments(@PathVariable(name="displayInfoId") int displayInfoId) {
-		
 		double averageScore = commentService.getAverageScore(displayInfoId);
 		List<Comment> comment = commentService.getComments(displayInfoId);
 		
 		return ResponseEntity
 				.ok(new CommentReadResponse(averageScore, comment));
+	}
+
+	@GetMapping("/{displayInfoId}/reserve")
+	public ResponseEntity<ReserveReadResponse> getDisplayInfoByReserve(@PathVariable(name="displayInfoId") int displayInfoId) {
+		ReserveReadResponse reserveReadResponse = detailService.getDetailByReserve(displayInfoId);
+		
+		return ResponseEntity
+				.ok(reserveReadResponse);
 	}
 	
 }

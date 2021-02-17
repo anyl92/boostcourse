@@ -13,6 +13,7 @@
 		request.onreadystatechange = function () {
 			if (request.readyState === 4 && request.status === 200) {
 				const displayInfos = JSON.parse(this.responseText);
+				console.log(displayInfos);
 				setDisplayInfos(displayInfos);
 			}
 		}
@@ -22,6 +23,7 @@
 		setAverageScore(displayInfos.averageScore, displayInfos.comments.length);
 		setComments(displayInfos.comments);
 		setProductImages(displayInfos.productImages, displayInfos.displayInfo.productDescription);
+		setProductImagesCount(displayInfos.productImages.length);
 		setProductContent(displayInfos.displayInfo.productContent);
 		setDisplayInfo(displayInfos.displayInfo, displayInfos.displayInfoImage.saveFileName);
 	}
@@ -96,6 +98,23 @@
 			$displayImageUlTag.innerHTML += bindTemplate(bindData);
 		});
 		setProductImageStyle();
+	}
+	
+	const setProductImagesCount = (imagesLength) => {
+		let $displayImageCountDivTag = document.querySelector(".figure_pagination");
+		
+		let $displayImageCountForm = document.querySelector("#display_image_count").innerHTML;
+		let bindTemplate = Handlebars.compile($displayImageCountForm);
+		let bindData = {
+			"current": 1,
+			"total": imagesLength
+		}
+		$displayImageCountDivTag.innerHTML += bindTemplate(bindData);
+		
+		if (imagesLength > 1) {
+			document.querySelector(".btn_nxt").addEventListener("click", () => nextImageViewButton());
+			document.querySelector(".btn_prev").addEventListener("click", () => prevImagViewButton());
+		}
 	}
 
 	const setProductContent = (content) => {
@@ -173,7 +192,7 @@
 		$displayImageUlTag.style.left = "0px";
 	}
 	
-	document.querySelector(".btn_nxt").addEventListener("click", () => {
+	const nextImageViewButton = () => {
 		let $displayImageUlTag = document.querySelector(".visual_img");
 		let calc = (parseInt($displayImageUlTag.style.left) 
 										- ($displayImageUlTag.offsetWidth / 2));
@@ -184,9 +203,9 @@
 		}
 		document.querySelector("#display_image_number").innerText 
 			= $displayImageUlTag.style.left == "0px" ? 1 : 2;
-	})
+	}
 	
-	document.querySelector(".btn_prev").addEventListener("click", () => {
+	const prevImagViewButton = () => {
 		let $displayImageUlTag = document.querySelector(".visual_img");
 		let calc = (parseInt($displayImageUlTag.style.left) 
 										+ ($displayImageUlTag.offsetWidth / 2));
@@ -197,4 +216,5 @@
 		}
 		document.querySelector("#display_image_number").innerText 
 			= $displayImageUlTag.style.left == "0px" ? 1 : 2;
-	})
+	}
+

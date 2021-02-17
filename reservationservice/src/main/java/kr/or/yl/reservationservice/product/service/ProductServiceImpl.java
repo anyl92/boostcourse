@@ -2,7 +2,6 @@ package kr.or.yl.reservationservice.product.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.yl.reservationservice.product.dao.ProductDao;
@@ -10,7 +9,7 @@ import kr.or.yl.reservationservice.product.domain.Product;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-	@Autowired
+
 	private final ProductDao productDao;
 
 	public ProductServiceImpl(ProductDao productDao) {

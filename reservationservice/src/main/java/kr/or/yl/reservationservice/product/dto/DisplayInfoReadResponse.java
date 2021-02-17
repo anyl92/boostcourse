@@ -6,6 +6,7 @@ import kr.or.yl.reservationservice.product.domain.Comment;
 import kr.or.yl.reservationservice.product.domain.DisplayInfo;
 import kr.or.yl.reservationservice.product.domain.DisplayInfoImage;
 import kr.or.yl.reservationservice.product.domain.ProductImage;
+import kr.or.yl.reservationservice.product.domain.ProductPrice;
 
 public class DisplayInfoReadResponse {
 
@@ -22,7 +23,7 @@ public class DisplayInfoReadResponse {
 		this.displayInfoImage = displayInfoImage;
 		this.productImages = productImages;
 	}
-
+	
 	public double getAverageScore() {
 		return averageScore;
 	}
@@ -31,11 +32,11 @@ public class DisplayInfoReadResponse {
 		return comments;
 	}
 
-	public DisplayInfo getDisplay() {
+	public DisplayInfo getDisplayInfo() {
 		return displayInfo;
 	}
 
-	public DisplayInfoImage getDisplayImage() {
+	public DisplayInfoImage getDisplayInfoImage() {
 		return displayInfoImage;
 	}
 
@@ -46,7 +47,8 @@ public class DisplayInfoReadResponse {
 	@Override
 	public String toString() {
 		return "DisplayInfoReadResponse [averageScore=" + averageScore + ", comments=" + comments + ", displayInfo="
-				+ displayInfo + ", displayInfoImage=" + displayInfoImage + ", productImages=" + productImages + "]";
+				+ displayInfo + ", displayInfoImage=" + displayInfoImage + ", productImages=" + productImages
+				+ "]";
 	}
 
 }

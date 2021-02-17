@@ -44,17 +44,5 @@ public class ProductDaoSqls {
 	+ "JOIN		display_info on product.id = display_info.product_id "
 	+ "WHERE    category_id = :categoryId "
 	+ "GROUP BY category.id;";
-	
-	public static final String SELECT_PRODUCT_PRICE
-	= "SELECT product_price.create_date, "
-	+ "		  product_price.discount_rate, "
-	+ "       product_price.modify_date, "
-	+ "       product_price.price, "
-	+ "       product_price.price_type_name, "
-	+ "       product.id AS product_id, "
-	+ "       product_price.id AS product_price_id "
-	+ "FROM   product_price "
-	+ "JOIN   product ON product.id = product_price.product_id "
-	+ "WHERE  product_id = 3";
-	
+
 }

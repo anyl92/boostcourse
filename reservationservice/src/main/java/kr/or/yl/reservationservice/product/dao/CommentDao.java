@@ -35,13 +35,13 @@ public class CommentDao {
 	}
 	
 	public List<Comment> selectComment(int displayInfoId) {
-		displayInfoReadRequest.setdisplayInfoId(displayInfoId);
+		displayInfoReadRequest.setDisplayInfoId(displayInfoId);
 		SqlParameterSource params = new BeanPropertySqlParameterSource(displayInfoReadRequest);
 		return jdbc.query(SELECT_COMMENT, params, commentRowMapper);
 	}
 
 	public List<CommentImage> selectCommentImage(int commentId) {
-		commentReadRequest.setcommentId(commentId);
+		commentReadRequest.setCommentId(commentId);
 		SqlParameterSource params = new BeanPropertySqlParameterSource(commentReadRequest);
 		return jdbc.query(SELECT_COMMENT_IMAGE, params, commentImageRowMapper);
 	}
